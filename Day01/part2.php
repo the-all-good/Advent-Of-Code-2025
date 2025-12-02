@@ -19,7 +19,6 @@ $count = 0;
 
 foreach ($lines as $line) {
     preg_match("/(?<dir>[L,R])(?<count>\d{1,4})/", $line, $matches);
-    echo $position;
     if (! isset($matches['dir'])) {
         var_dump($matches);
     }
@@ -51,8 +50,6 @@ foreach ($lines as $line) {
     if ($position == 0 || $position == 100) {
         $count++;
     }
-
-    echo " -- $position -- $matches[0] -- $count\n";
 }
 
 echo "$count \n";

@@ -3,26 +3,11 @@ include 'src/input.php';
 
 $input = new Input(1);
 $lines = $input->split_by_newlines();
-// $input = "L68
-// L30
-// R48
-// L5
-// R60
-// L55
-// L1
-// L99
-// R14
-// L82";
-// $lines = explode("\n", $input);
 $position = (int) 50;
 $count = 0;
 
 foreach ($lines as $line) {
     preg_match("/(?<dir>[L,R])(?<count>\d{1,4})/", $line, $matches);
-
-    if (! isset($matches['dir'])) {
-        var_dump($matches);
-    }
 
     if ($matches['dir'] == "L") {
         $position -= (int) $matches['count'];
@@ -45,5 +30,4 @@ foreach ($lines as $line) {
     }
 }
 
-
-echo "$count \n";
+$input->submit_answer(1, $count);

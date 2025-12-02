@@ -1,2 +1,2 @@
-# Advent_of_code_2024
-2024 Advent of Code solutions
+# Advent_of_code_2025
+2025 Advent of Code solutions

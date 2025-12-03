@@ -3,11 +3,6 @@ include 'src/input.php';
 
 $input = new Input(3);
 $banks = $input->split_by_newlines();
-// $input = "987654321111111
-// 811111111111119
-// 234234234234278
-// 818181911112111";
-// $banks = explode("\n", $input);
 $count = 0;
 
 foreach ($banks as $bank) {
@@ -39,6 +34,6 @@ function getJoltage(array $bank): int
     }
 
     $joltage = implode('', $bank);
-    
+
     return (int) $joltage;
 }

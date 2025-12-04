@@ -5,8 +5,10 @@ class Input{
     public $url = "https://adventofcode.com/2025/day/";
     public $day;
     private $cookie;
+    public $map;
     
-    function __construct($day){
+    function __construct($day)
+    {
         $this->day = $day;
         $this->cookie = "session=" . parse_ini_file('.env')['SESSION'];
         $ch = curl_init("{$this->url}{$this->day}/input");
@@ -17,11 +19,13 @@ class Input{
         $this->output = $output;
     }
 
-    public function get_input(){
+    public function get_input()
+    {
         return $this->output;
     }
 
-    public function split_by_newlines(){
+    public function split_by_newlines(): array
+    {
         $split = explode("\n", $this->get_input());
         foreach($split as $key => $line){
             if($line === ""){
@@ -31,7 +35,28 @@ class Input{
         return $split;
     }
 
-    public function submit_answer($part, $answer){
+    public function createMap(): array
+    {
+        $map = [];
+        foreach (explode("\n", $this->output) as $y => $line) {
+            $map[$y] = str_split($line);
+        }
+
+        return $map;
+    }
+
+    public function viewMap(): void
+    {
+        foreach ($this->map as $y => $line) {
+            foreach ($line as $char) {
+                echo $char;
+            }
+            echo "\n";
+        }
+    }
+
+    public function submit_answer($part, $answer)
+    {
         $ch = curl_init("{$this->url}{$this->day}/answer");
         curl_setopt($ch, CURLOPT_COOKIE, $this->cookie);
         curl_setopt($ch, CURLOPT_POST, true);
